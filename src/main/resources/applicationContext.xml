@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	    http://activemq.apache.org/schema/core
+	    http://activemq.apache.org/schema/core/activemq-core-5.9.0.xsd
+	    http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="net.navinet" />
+
+    <context:property-placeholder location="classpath:env.properties" />
+
+    <!-- JMS Connection -->
+
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+    </bean>
+
+    <bean id="pooledJmsConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" init-method="start" destroy-method="stop">
+        <property name="connectionFactory" ref="jmsConnectionFactory" />
+    </bean>
+
+    <bean id="container" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="pooledJmsConnectionFactory" />
+        <property name="messageListener" ref="selectListener" />
+        <property name="destinationName" value="EB.SELECT.EVENT.Q" />
+        <property name="concurrentConsumers" value="10" />
+        <property name="maxConcurrentConsumers" value="50" />
+    </bean>
+
+    <!-- JMS Connection -->
+
+    <!-- Class Configuration -->
+
+    <bean id="neoRestAPI" class="org.neo4j.rest.graphdb.RestAPIFacade">
+        <constructor-arg name="uri" value="${neo4j.connectionstring}" />
+    </bean>
+
+    <bean id="graphRepository" class="net.navinet.caregraph.impl.GraphRepository" init-method="init">
+        <property name="restAPI" ref="neoRestAPI" />
+    </bean>
+
+    <util:map id="providerCodeMap" map-class="java.util.HashMap" key-type="java.lang.String" value-type="net.navinet.domain.ProviderType">
+        <entry key="P3" value="PRIMARY_CARE_PROVIDER" />
+    </util:map>
+
+    <bean id="providerTypeMapper" class="net.navinet.domain.mapping.impl.CodeMapper">
+        <property name="codeMap" ref="providerCodeMap" />
+    </bean>
+
+    <util:map id="phoneCodeMap" map-class="java.util.HashMap" key-type="java.lang.String" value-type="net.navinet.domain.PhoneType">
+        <entry key="TE" value="WORK" />
+    </util:map>
+
+    <bean id="phoneTypeMapper" class="net.navinet.domain.mapping.impl.CodeMapper">
+        <property name="codeMap" ref="phoneCodeMap" />
+    </bean>
+
+    <util:map id="emailCodeMap" map-class="java.util.HashMap" key-type="java.lang.String" value-type="net.navinet.domain.EmailType">
+        <entry key="EM" value="WORK" />
+    </util:map>
+
+    <bean id="emailTypeMapper" class="net.navinet.domain.mapping.impl.CodeMapper">
+        <property name="codeMap" ref="emailCodeMap" />
+    </bean>
+
+    <bean id="jsonContactFactory" class="net.navinet.domain.impl.JsonContactFactory">
+        <property name="phoneTypeMapper" ref="phoneTypeMapper" />
+        <property name="emailTypeMapper" ref="emailTypeMapper" />
+    </bean>
+
+    <bean id="jsonAddressFactory" class="net.navinet.domain.impl.JsonAddressFactory" />
+
+    <bean id="jsonPatientFactory" class="net.navinet.domain.impl.JsonPatientFactory" />
+
+    <bean id="jsonSubscriberFactory" class="net.navinet.domain.impl.JsonSubscriberFactory" />
+
+    <bean id="jsonProviderFactory" class="net.navinet.domain.impl.JsonProviderFactory">
+        <property name="providerTypeMapper" ref="providerTypeMapper" />
+        <property name="addressFactory" ref="jsonAddressFactory" />
+        <property name="contactFactory" ref="jsonContactFactory" />
+    </bean>
+
+    <bean id="jsonUserFactory" class="net.navinet.domain.impl.JsonUserFactory" />
+
+    <bean id="jsonPayerFactory" class="net.navinet.domain.impl.JsonPayerFactory" />
+
+    <bean id="selectMessageHandler" class="net.navinet.messaging.impl.SelectMessageHandlerImpl">
+        <property name="patientFactory" ref="jsonPatientFactory" />
+        <property name="subscriberFactory" ref="jsonSubscriberFactory" />
+        <property name="providerFactory" ref="jsonProviderFactory" />
+        <property name="userFactory" ref="jsonUserFactory" />
+        <property name="payerFactory" ref="jsonPayerFactory" />
+        <property name="graphRepository" ref="graphRepository" />
+    </bean>
+
+    <bean id="messageHandlerFactory" class="net.navinet.messaging.impl.MessageHandlerFactory">
+        <property name="handlerMap">
+            <map>
+                <entry key="nnt://eligibility-benefits/select" value-ref="selectMessageHandler" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="selectListener" class="net.navinet.SelectListener" init-method="init" destroy-method="destroy">
+        <property name="messageHandlerFactory" ref="messageHandlerFactory" />
+    </bean>
+
+    <!-- Class Configuration -->
+
+    <!-- Aspect Configuration -->
+
+    <bean id="timingAspect" class="net.navinet.logging.aspects.TimingAspect" />
+
+    <aop:config>
+        <aop:aspect id="timingLogging" ref="timingAspect">
+
+            <aop:pointcut id="pointCutAround" expression="execution(* javax.jms.MessageListener.onMessage(..))" />
+            <aop:around method="messageProfiling" pointcut-ref="pointCutAround" />
+
+        </aop:aspect>
+
+    </aop:config>
+
+    <!-- Aspect Configuration -->
+
+</beans>
