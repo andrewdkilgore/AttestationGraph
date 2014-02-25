@@ -53,13 +53,6 @@ public class SelectMessageHandlerImpl implements MessageHandler
         User user = _userFactory.createFrom(body);
         Payer payer = _payerFactory.createFrom(body);
 
-        if(subscriber == null)
-        {
-            _graphRepository.addOrUpdatePatient(patient);
-        }
-        else
-        {
-            _graphRepository.addOrUpdatePatient(patient, subscriber);
-        }
+        _graphRepository.buildOrUpdateCareGraph(patient, subscriber, provider, user, payer);
     }
 }

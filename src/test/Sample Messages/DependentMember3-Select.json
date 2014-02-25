@@ -1,0 +1,366 @@
+{
+  "topic": "nmt:NaviNet/EligibilityBenefits/Select",
+  "event": {
+    "context": {
+      "event_type": "nmt:NaviNet/EligibilityBenefits/Select",
+      "identification": {
+        "event_id": "FDCB1D11-4033-4ADC-BD34-51C9149A2BDC",
+        "activity_id": "A4848F2A-57C5-4811-948A-8630670C9239"
+      },
+      "source": {
+        "application_id": "xri://@navimedix.com/navinet/eligibility-benefits/ui",
+        "application_name": "NaviNetEligibilityBenefitsUI",
+        "application_context_id": "xri://@navimedix.com/navinet/eligibility-benefits/ui",
+        "created_date": "2014-02-06T16:56:15.2329083Z",
+        "updated_date": "0001-01-01T00:00:00"
+      }
+    },
+    "payload": {
+      "patient": {
+        "name": {
+          "last_name": "Simpson",
+          "first_name": "Lisa",
+          "middle_name": "L"
+        },
+        "birth_date": "1990-01-01T00:00:00",
+        "member_id": "ABC4",
+        "relationship_to_subscriber": "Dependent",
+        "gender": "F"
+      },
+      "subscriber": {
+        "name": {
+          "last_name": "Simpson",
+          "first_name": "Homer",
+          "middle_name": "J"
+        },
+        "member_id": "ABC1",
+        "employer_group_id": "ABC123"
+      },
+      "coverage": {
+        "insurance_type_code": "HM",
+        "insurance_type_description": "Health Maintenance Organization (HMO)",
+        "plan_coverage_description": "HEALTH MAINTENANCE ORGANIZATION (HMO)",
+        "plan_coverage_status_code": "1",
+        "plan_coverage_status_description": "Active Coverage",
+        "plan_coverage_date_start": "2010-01-01T00:00:00",
+        "plan_coverage_date_end": "2010-12-31T00:00:00"
+      },
+      "services": [
+        {
+          "plan_service_type_code": "1",
+          "plan_service_type_description": "Medical Care",
+          "plan_service_status_code": "1",
+          "plan_service_status_description": "Active Coverage"
+        },
+        {
+          "plan_service_type_code": "47",
+          "plan_service_type_description": "Hospital",
+          "plan_service_status_code": "1",
+          "plan_service_status_description": "Active Coverage"
+        },
+        {
+          "plan_service_type_code": "60",
+          "plan_service_type_description": "General Benefits",
+          "plan_service_status_code": "1",
+          "plan_service_status_description": "Active Coverage"
+        },
+        {
+          "plan_service_type_code": "2",
+          "plan_service_type_description": "Surgical"
+        },
+        {
+          "plan_service_type_code": "4",
+          "plan_service_type_description": "Diagnostic X-Ray"
+        },
+        {
+          "plan_service_type_code": "5",
+          "plan_service_type_description": "Diagnostic Lab"
+        },
+        {
+          "plan_service_type_code": "6",
+          "plan_service_type_description": "Radiation Therapy"
+        },
+        {
+          "plan_service_type_code": "7",
+          "plan_service_type_description": "Anesthesia"
+        },
+        {
+          "plan_service_type_code": "8",
+          "plan_service_type_description": "Surgical Assistance"
+        },
+        {
+          "plan_service_type_code": "12",
+          "plan_service_type_description": "Durable Medical Equipment Purchase"
+        },
+        {
+          "plan_service_type_code": "13",
+          "plan_service_type_description": "Ambulatory Service Center Facility"
+        },
+        {
+          "plan_service_type_code": "18",
+          "plan_service_type_description": "Durable Medical Equipment Rental"
+        },
+        {
+          "plan_service_type_code": "20",
+          "plan_service_type_description": "Second Surgical Opinion"
+        },
+        {
+          "plan_service_type_code": "33",
+          "plan_service_type_description": "Chiropractic"
+        },
+        {
+          "plan_service_type_code": "35",
+          "plan_service_type_description": "Dental Care",
+          "plan_service_status_code": "1",
+          "plan_service_status_description": "Active Coverage"
+        },
+        {
+          "plan_service_type_code": "40",
+          "plan_service_type_description": "Oral Surgery"
+        },
+        {
+          "plan_service_type_code": "42",
+          "plan_service_type_description": "Home Health Care"
+        },
+        {
+          "plan_service_type_code": "45",
+          "plan_service_type_description": "Hospice"
+        },
+        {
+          "plan_service_type_code": "48",
+          "plan_service_type_description": "Hospital - Inpatient"
+        },
+        {
+          "plan_service_type_code": "50",
+          "plan_service_type_description": "Hospital - Outpatient"
+        },
+        {
+          "plan_service_type_code": "51",
+          "plan_service_type_description": "Hospital - Emergency Accident"
+        },
+        {
+          "plan_service_type_code": "52",
+          "plan_service_type_description": "Hospital - Emergency Medical"
+        },
+        {
+          "plan_service_type_code": "53",
+          "plan_service_type_description": "Hospital - Ambulatory Surgical"
+        },
+        {
+          "plan_service_type_code": "61",
+          "plan_service_type_description": "In Vitro Fertilization"
+        },
+        {
+          "plan_service_type_code": "62",
+          "plan_service_type_description": "MRI/CAT Scan"
+        },
+        {
+          "plan_service_type_code": "65",
+          "plan_service_type_description": "Newborn Care"
+        },
+        {
+          "plan_service_type_code": "68",
+          "plan_service_type_description": "Well Baby Care"
+        },
+        {
+          "plan_service_type_code": "69",
+          "plan_service_type_description": "Maternity"
+        },
+        {
+          "plan_service_type_code": "72",
+          "plan_service_type_description": "Inhalation Therapy"
+        },
+        {
+          "plan_service_type_code": "73",
+          "plan_service_type_description": "Diagnostic Medical"
+        },
+        {
+          "plan_service_type_code": "76",
+          "plan_service_type_description": "Dialysis"
+        },
+        {
+          "plan_service_type_code": "78",
+          "plan_service_type_description": "Chemotherapy"
+        },
+        {
+          "plan_service_type_code": "79",
+          "plan_service_type_description": "Allergy Testing"
+        },
+        {
+          "plan_service_type_code": "80",
+          "plan_service_type_description": "Immunizations"
+        },
+        {
+          "plan_service_type_code": "81",
+          "plan_service_type_description": "Routine Physical"
+        },
+        {
+          "plan_service_type_code": "82",
+          "plan_service_type_description": "Family Planning"
+        },
+        {
+          "plan_service_type_code": "83",
+          "plan_service_type_description": "Infertility"
+        },
+        {
+          "plan_service_type_code": "84",
+          "plan_service_type_description": "Abortion"
+        },
+        {
+          "plan_service_type_code": "88",
+          "plan_service_type_description": "Pharmacy",
+          "plan_service_status_code": "1",
+          "plan_service_status_description": "Active Coverage"
+        },
+        {
+          "plan_service_type_code": "93",
+          "plan_service_type_description": "Podiatry"
+        },
+        {
+          "plan_service_type_code": "98",
+          "plan_service_type_description": "Professional (Physician) Visit - Office"
+        },
+        {
+          "plan_service_type_code": "99",
+          "plan_service_type_description": "Professional (Physician) Visit - Inpatient"
+        },
+        {
+          "plan_service_type_code": "A0",
+          "plan_service_type_description": "Professional (Physician) Visit - Outpatient"
+        },
+        {
+          "plan_service_type_code": "A3",
+          "plan_service_type_description": "Professional (Physician) Visit - Home"
+        },
+        {
+          "plan_service_type_code": "A6",
+          "plan_service_type_description": "Psychotherapy"
+        },
+        {
+          "plan_service_type_code": "A7",
+          "plan_service_type_description": "Psychiatric - Inpatient"
+        },
+        {
+          "plan_service_type_code": "A8",
+          "plan_service_type_description": "Psychiatric - Outpatient"
+        },
+        {
+          "plan_service_type_code": "AD",
+          "plan_service_type_description": "Occupational Therapy"
+        },
+        {
+          "plan_service_type_code": "AE",
+          "plan_service_type_description": "Physical Medicine"
+        },
+        {
+          "plan_service_type_code": "AF",
+          "plan_service_type_description": "Speech Therapy"
+        },
+        {
+          "plan_service_type_code": "AG",
+          "plan_service_type_description": "Skilled Nursing Care"
+        },
+        {
+          "plan_service_type_code": "AH",
+          "plan_service_type_description": "Skilled Nursing Care - Room and Board"
+        },
+        {
+          "plan_service_type_code": "AI",
+          "plan_service_type_description": "Substance Abuse"
+        },
+        {
+          "plan_service_type_code": "AL",
+          "plan_service_type_description": "Vision (Optometry)",
+          "plan_service_status_code": "1",
+          "plan_service_status_description": "Active Coverage"
+        },
+        {
+          "plan_service_type_code": "BG",
+          "plan_service_type_description": "Cardiac Rehabilitation"
+        },
+        {
+          "plan_service_type_code": "BH",
+          "plan_service_type_description": "Pediatric"
+        }
+      ],
+      "provider": {
+        "provider_tin": "0111101123",
+        "provider_type_code": "P3",
+        "provider_type_description": "Primary Care Provider",
+        "name": {
+          "last_name": "SMITH"
+        },
+        "contact": {
+          "address": {
+            "address_line1": "MAIN ROAD",
+            "city": "PHILADELPHIA",
+            "state_code": "PA",
+            "zip_code": "19154"
+          },
+          "phone": [
+            {
+              "phone_type_code": "TE",
+              "phone_type_description": "Telephone",
+              "phone_number": "2111412400"
+            },
+            {
+              "phone_type_code": "TE",
+              "phone_type_description": "Telephone",
+              "phone_number": "2222412400"
+            },
+            {
+              "phone_type_code": "TE",
+              "phone_type_description": "Telephone",
+              "phone_number": "2333412400"
+            }
+          ],
+          "email": [
+            {
+              "email_type_code": "EM",
+              "email_type_description": "Electronic Mail",
+              "email_address": "smith1@navinet.net"
+            },
+            {
+              "email_type_code": "EM",
+              "email_type_description": "Electronic Mail",
+              "email_address": "smith2@navinet.net"
+            },
+            {
+              "email_type_code": "EM",
+              "email_type_description": "Electronic Mail",
+              "email_address": "smith3@navinet.net"
+            }
+          ],
+          "web_site": [
+            {
+              "url_type_code": "UR",
+              "url_type_description": "Uniform Resource Locator (URL)",
+              "url_address": "www.navinet.net"
+            },
+            {
+              "url_type_code": "UR",
+              "url_type_description": "Uniform Resource Locator (URL)",
+              "url_address": "www.navimedix.com"
+            },
+            {
+              "url_type_code": "UR",
+              "url_type_description": "Uniform Resource Locator (URL)",
+              "url_address": "connect.navinet.net"
+            }
+          ]
+        }
+      },
+      "user": {
+        "nid": 3052611,
+        "role_id": 222,
+        "office_nid": 79,
+        "group_nid": 59,
+        "session_id": "{F0A5C6C2-BCAE-49FD-87B8-B5F85FFE70D2}"
+      },
+      "payer": {
+        "plan_nid": 1,
+        "plan_short_name": "awesome"
+      }
+    }
+  }
+}
